@@ -1,0 +1,37 @@
+model:
+  # Run scripts/inspect_sam2_features.py first and update the feature settings below if needed.
+  # Use --test-mask-decoder before training; if native SAM2 decoding fails, either fix config or explicitly accept fallback.
+  # Keep resnet mode for quick debugging; use this file for the paper-aligned SAM2 path.
+  encoder_type: sam2
+  decoder_type: hybrid
+  # Main LSD-Seg paper mode. `sam_mask` is baseline/sanity-check only.
+  # hybrid is the main paper-aligned LSD-Seg mode.
+  # sam_mask is only a native SAM/SAM2 baseline or sanity-check mode.
+  use_sam_mask_prior: true
+  allow_sam_decoder_fallback: true
+  descriptor_source: pyramid
+
+  sam2_model_cfg: /path/to/sam2_hiera_l.yaml
+  sam2_checkpoint_path: /path/to/sam2_hiera_large.pt
+  sam2_image_size: 1024
+
+  # Most SAM2 builds expose `backbone_fpn`, but inspect the raw keys first.
+  # Use --feature-key if your build exposes a different branch.
+  sam2_feature_key: backbone_fpn
+  sam2_feature_format: auto
+  sam2_out_indices: [0, 1, 2, 3]
+  # Run:
+  #   uv run python scripts/inspect_sam2_features.py --model-cfg ... --checkpoint ... --image-size 1024
+  # Then copy the reported `sam2_feature_channels` here.
+  # Different SAM2 checkpoints/backbones may expose different channel counts.
+  sam2_feature_channels: [256, 256, 256, 256]
+  sam2_output_channels: [256, 256, 256, 256]
+  sam2_projection_trainable: true
+  sam2_mask_input_size: 256
+
+  freeze_encoder: true
+  sam2_freeze_prompt_encoder: true
+  sam2_freeze_mask_decoder: true
+
+loss:
+  prompt_weight: 0.1

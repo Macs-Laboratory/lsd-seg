@@ -1,0 +1,19 @@
+paper_experiments:
+  - ours_full
+  - ours_fixed_k
+  - ours_no_hypernetwork
+  - ours_no_uncertainty_tempering
+  - ours_global_only_descriptor
+  - ours_no_prototype_merge
+  - ours_no_expert_loss
+  - ours_no_orthogonality
+  - ours_no_balance
+  - nnunet_2d
+  - mednext_2d
+  - vm_unet
+  - u_mamba_2d
+  - segmamba_2d
+  - sam2_apg
+  - medsam_apg
+  - sam_med2d_apg
+  - medsam2_apg

@@ -1,0 +1,94 @@
+seed: 42
+output_dir: artifacts/default
+
+dataset:
+  name: Kvasir-SEG
+  manifest_path: data/manifests/kvasir_seg.json
+  split_path: data/splits/kvasir_seg.yaml
+  image_size: 256
+  num_workers: 4
+  batch_size: 8
+  subdomain:
+    strategy: metadata_or_frozen_cluster
+    metadata_key: center
+    num_clusters: 5
+    cache_path: data/subdomains/kvasir_seg_assignments.csv
+
+model:
+  in_channels: 1
+  num_classes: 1
+  encoder_type: resnet
+  decoder_type: film
+  # prompt_prior_logits is always the coarse prompt-generator prior.
+  # sam_native_prior_logits exists only when native SAM/SAM2 prompt+mask decoding succeeds.
+  use_sam_mask_prior: false
+  allow_sam_decoder_fallback: true
+  descriptor_source: deepest
+  encoder_name: resnet18
+  encoder_pretrained: true
+  encoder_checkpoint_path: null
+  sam_checkpoint_path: null
+  sam_model_type: vit_b
+  sam_image_size: 1024
+  sam_mask_input_size: 256
+  sam2_model_cfg: null
+  sam2_checkpoint_path: null
+  sam2_image_size: 1024
+  sam2_feature_key: backbone_fpn
+  sam2_feature_format: auto
+  sam2_out_indices: [0, 1, 2, 3]
+  sam2_feature_channels: [256, 256, 256, 256]
+  sam2_output_channels: [256, 256, 256, 256]
+  sam2_projection_trainable: true
+  sam2_mask_input_size: 256
+  sam2_normalize_mean: [0.485, 0.456, 0.406]
+  sam2_normalize_std: [0.229, 0.224, 0.225]
+  sam2_freeze_prompt_encoder: true
+  sam2_freeze_mask_decoder: true
+  encoder_dim: 256
+  decoder_channels: [256, 128, 64, 32]
+  descriptor_dim: 256
+  merge_threshold: 0.95
+  init_threshold: 0.65
+  ema_momentum: 0.95
+  min_support: 3
+  merge_interval: 100
+  warmup_steps: 0
+  routing_tau: 0.07
+  learnable_tau: false
+  max_prototypes: 12
+  dynamic_prototypes: true
+  fixed_k: null
+  hypernetwork_enabled: true
+  uncertainty_tempering_enabled: true
+  uncertainty_tempering_mode: sample
+  uncertainty_alpha: 4.0
+  merge_enabled: true
+  freeze_encoder: true
+  use_roi_descriptor: true
+
+optimizer:
+  lr: 0.0001
+  weight_decay: 0.0001
+  epochs: 100
+  grad_clip_norm: 1.0
+
+loss:
+  expert_weight: 0.2
+  ortho_weight: 0.01
+  balance_weight: 0.01
+  proto_weight: 0.0
+  prompt_weight: 0.1
+  lambda_expert: 0.2
+  lambda_ortho: 0.01
+  lambda_balance: 0.01
+
+evaluation:
+  threshold: 0.5
+  save_predictions: false
+  compute_runtime: true
+  compute_memory: true
+
+experiment:
+  name: ours_full
+  kind: native

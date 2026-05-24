@@ -1,0 +1,23 @@
+datasets:
+  PolypGen: https://github.com/berak/opendatasets/tree/master/PolypGen
+  Kvasir-SEG: https://datasets.simula.no/kvasir-seg/
+  CVC-ClinicDB: https://polyp.grand-challenge.org/CVCClinicDB/
+  ISIC2018: https://challenge.isic-archive.com/data/
+  REFUGE: https://refuge.grand-challenge.org/
+  DRIVE: https://drive.grand-challenge.org/
+  MoNuSeg: https://monuseg.grand-challenge.org/
+  GlaS: https://warwick.ac.uk/fac/cross_fac/tia/data/glascontest/
+  BUSI: https://scholar.cu.edu.eg/?q=afahmy/pages/dataset
+  CAMUS: https://www.creatis.insa-lyon.fr/Challenge/camus/
+  ACDC: https://www.creatis.insa-lyon.fr/Challenge/acdc/
+  PROMISE12: https://promise12.grand-challenge.org/
+  BraTS: https://www.synapse.org/Synapse:syn51156910/wiki/
+  ISLES2022: https://www.isles-challenge.org/
+  WMH: https://wmh.isi.uu.nl/
+  MSD_Hippocampus: http://medicaldecathlon.com/
+  KiTS21: https://kits-challenge.org/kits21/
+  BTCV: https://www.synapse.org/Synapse:syn3193805/wiki/
+  LiTS: https://competitions.codalab.org/competitions/17094
+  LIDC-IDRI: https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI
+  autoPET: https://autopet.grand-challenge.org/
+  HECKTOR: https://hecktor.grand-challenge.org/
