@@ -388,12 +388,7 @@ See:
 Citation will be updated with the official proceedings metadata when available.
 
 ```bibtex
-@inproceedings{lee2026lsdseg,
-  title     = {Dynamic Sub-domain Modeling for Robust Medical Image Segmentation},
-  author    = {Lee, Kyungsu and Choi, Seo-Yeon and Hwang, Jae Youn and Woo, Jong-Hye},
-  booktitle = {International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI)},
-  year      = {2026}
-}
+
 ```
 
 ## Acknowledgements
